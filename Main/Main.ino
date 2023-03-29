@@ -9,9 +9,6 @@
 //Include library for IR remote
 #include <IRremote.h>
 
-//Include servo control library
-#include <Servo.h>
-
 //Define onboard LED pin
 #define LED_PIN 13
 
@@ -50,9 +47,6 @@
 
 //Global to track current CMG position
 byte cmg_pwm = 0;
-
-//Declare servo motor
-Servo servo;
 
 void setup() {
   //Start Serial
