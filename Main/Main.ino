@@ -9,6 +9,9 @@
 //Include library for IR remote
 #include <IRremote.h>
 
+//Include library for servo motor
+#include <Servo.h>
+
 //Define onboard LED pin
 #define LED_PIN 13
 
@@ -16,12 +19,14 @@
 #define IR_PIN 8
 
 //Define pins for Reaction Wheel
-#define RW_ENABLE_PIN 19 //ESCON pin J5-2
+#define RW_ENABLE_PIN 21 //ESCON pin J5-2
 #define RW_PWM_PIN 20 //ESCON pin J5-1
 //Connect GND to ESCON pin J5-5 and J6-7 (Not 100% sure this is necessary but will not hurt)
 
 //Define pins for servo motor
 #define SERVO_PWM_PIN 16
+
+Servo servo;
 
 //Button Mappings
 #define POWER_BUTTON         69
@@ -46,7 +51,7 @@
 #define STATIONARY 127
 
 //Global to track current CMG position
-byte cmg_pwm = 0;
+byte cmg_angle = 0;
 
 void setup() {
   //Start Serial
@@ -79,7 +84,8 @@ void volume_plus_button(){
   Serial.println("Turning on CMG rotation");
   //Move gimbal to 90 degrees
   servo.write(SERVO_90_DEG);
-  cmg_pwm = SERVO_90_DEG;
+  delay(15);
+  cmg_angle = SERVO_90_DEG;
   //Wait 5 seconds
   delay(5);
   //Spin up CMG
@@ -94,28 +100,31 @@ void volume_minus_button(){
   digitalWrite(RW_PWM_PIN, STATIONARY);
   //Move gimbal to starting positin
   servo.write(SERVO_0_DEG);
-  cmg_pwm = SERVO_0_DEG;
+  delay(15);
+  cmg_angle = SERVO_0_DEG;
 }
 
 void rewind_button(){
   Serial.println("Turning CMG CCW");
   //If angle is greater than 45 degrees
-  if(cmg_pwm > SERVO_45_DEG){
+  if(cmg_angle > SERVO_45_DEG){
     //Decrement angle variable
-    cmg_pwm-=INCREMENT;
+    cmg_angle-=INCREMENT;
     //Write this decremented angle to CMG
-    servo.write(cmg_pwm);
+    servo.write(cmg_angle);
+    delay(15);
   }
 }
 
 void fast_forward_button(){
   Serial.println("Turning CMG CW");
   //If angle is less than 135 degrees
-  if(cmg_pwm < SERVO_135_DEG){
+  if(cmg_angle < SERVO_135_DEG){
     //Increment angle variable
-    cmg_pwm+=INCREMENT;
+    cmg_angle+=INCREMENT;
     //Write this incremented angle to CMG
-    servo.write(cmg_pwm);
+    servo.write(cmg_angle);
+    delay(15);
   }
 }
 
