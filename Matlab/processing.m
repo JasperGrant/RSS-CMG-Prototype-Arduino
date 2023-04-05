@@ -22,6 +22,7 @@ gyro = magnitude.*direction;
 % Plot of velocity over time
 figure(1)
 plot(time,gyro)
-xlabel("time (s)")
+title("Data Logging Demonstration")
+xlabel("Time (s)")
 ylabel("RPM")
 grid on
