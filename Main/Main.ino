@@ -19,7 +19,7 @@
 #define IR_PIN 8
 
 //Define pins for Reaction Wheel
-#define RW_ENABLE_PIN 21 //ESCON pin J5-2
+#define RW_ENABLE_PIN 2 //ESCON pin J5-2
 #define RW_PWM_PIN 20 //ESCON pin J5-1
 //Connect GND to ESCON pin J5-5 and J6-7 (Not 100% sure this is necessary but will not hurt)
 
@@ -68,6 +68,8 @@ void setup() {
   pinMode(RW_PWM_PIN, OUTPUT);
   //Attach servo motor
   servo.attach(SERVO_PWM_PIN);
+  analogWrite(RW_ENABLE_PIN, HIGH);
+  digitalWrite(RW_PWM_PIN, 150);
 
 }
 
@@ -76,7 +78,7 @@ void setup() {
 void power_button(){
   Serial.println("Emergency Stop");
   //Turn off RW
-  analogWrite(RW_ENABLE_PIN, LOW);
+  analogWrite(RW_ENABLE_PIN, HIGH);
   digitalWrite(RW_PWM_PIN, 127);
 }
 
