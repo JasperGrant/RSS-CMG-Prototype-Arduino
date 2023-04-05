@@ -15,8 +15,8 @@
 #define chipSelect BUILTIN_SDCARD
 
 // IMU libray & object
-#include <DFRobot_BMX160.h>
-DFRobot_BMX160 bmx160;
+//#include <DFRobot_BMX160.h>
+//DFRobot_BMX160 bmx160;
 
 //File object
 File myFile;
@@ -58,11 +58,10 @@ void setup()
   //Clears previous data file
   SD.remove("data.txt");
 
-  if (!bmx160.begin())
-  {
-    Serial.println("No IMU");
-    while(1);
-  }
+  //if (!bmx160.begin())
+  //{
+  //  Serial.println("No IMU");
+  //}
 
   //Start receiving from IR remote
   IrReceiver.begin(IR_PIN);
@@ -103,7 +102,10 @@ void loop() {
     //Go back to listening
     IrReceiver.resume();
     //Decode command
+    
     int command = IrReceiver.decodedIRData.command;
+        Serial.println(command);
+
     //if(command == 0) command = last_command;
     
     //Switch to deal with different buttons
@@ -129,15 +131,15 @@ void loop() {
       myFile.print(",");
 
       //Collects gyroscope data
-      sBmx160SensorData_t Omagn, Ogyro, Oaccel;
-      bmx160.getAllData(&Omagn, &Ogyro, &Oaccel);
+      //sBmx160SensorData_t Omagn, Ogyro, Oaccel;
+      //bmx160.getAllData(&Omagn, &Ogyro, &Oaccel);
 
       //Writes gyro data in rpm
-      myFile.print(Ogyro.x);
+      //myFile.print(Ogyro.x);
       myFile.print(",");
-      myFile.print(Ogyro.y);
+      //myFile.print(Ogyro.y);
       myFile.print(",");
-      myFile.print(Ogyro.z);
+      //myFile.print(Ogyro.z);
       myFile.print(",");
 
       //Writes servo angle
