@@ -19,7 +19,7 @@
 #define IR_PIN 8
 
 //Define pins for Reaction Wheel
-#define RW_ENABLE_PIN 2 //ESCON pin J5-2
+#define RW_ENABLE_PIN 19 //ESCON pin J5-2
 #define RW_PWM_PIN 20 //ESCON pin J5-1
 //Connect GND to ESCON pin J5-5 and J6-7 (Not 100% sure this is necessary but will not hurt)
 
@@ -47,8 +47,8 @@ Servo servo;
 #define INCREMENT 3
 
 //RW speeds
-#define FULL_SPEED 255
-#define STATIONARY 127
+#define FULL_SPEED 177
+#define STATIONARY 127 //Shouldnt need to be used
 
 //Global to track current CMG position
 byte cmg_angle = 0;
@@ -68,8 +68,8 @@ void setup() {
   pinMode(RW_PWM_PIN, OUTPUT);
   //Attach servo motor
   servo.attach(SERVO_PWM_PIN);
-  analogWrite(RW_ENABLE_PIN, HIGH);
-  digitalWrite(RW_PWM_PIN, 150);
+  digitalWrite(RW_ENABLE_PIN, HIGH);
+  analogWrite(RW_PWM_PIN, 150);
 
 }
 
@@ -78,8 +78,8 @@ void setup() {
 void power_button(){
   Serial.println("Emergency Stop");
   //Turn off RW
-  analogWrite(RW_ENABLE_PIN, HIGH);
-  digitalWrite(RW_PWM_PIN, 127);
+  digitalWrite(RW_ENABLE_PIN, HIGH);
+  analogWrite(RW_PWM_PIN, 127);
 }
 
 void volume_plus_button(){
@@ -91,15 +91,15 @@ void volume_plus_button(){
   //Wait 5 seconds
   delay(5);
   //Spin up CMG
-  analogWrite(RW_ENABLE_PIN, HIGH);
-  digitalWrite(RW_PWM_PIN, FULL_SPEED);
+  digitalWrite(RW_ENABLE_PIN, HIGH);
+  analogWrite(RW_PWM_PIN, FULL_SPEED);
 }
 
 void volume_minus_button(){
   Serial.println("Turning off CMG rotation");
   //Stop spinning CMG
-  analogWrite(RW_ENABLE_PIN, LOW);
-  digitalWrite(RW_PWM_PIN, STATIONARY);
+  digitalWrite(RW_ENABLE_PIN, LOW);
+  analogWrite(RW_PWM_PIN, STATIONARY);
   //Move gimbal to starting positin
   servo.write(SERVO_0_DEG);
   delay(15);
