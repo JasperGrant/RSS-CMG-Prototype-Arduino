@@ -4,7 +4,7 @@
 //Planned behaviour is RW operation, and servo operation.
 //Written by Jasper Grant
 //Written March 20th 2023 for the RSS CMG Capstone
-//Last edited March 23rd 2023
+//Last edited April 10th 2023
 
 //Include library for IR remote
 #include <IRremote.h>
@@ -42,12 +42,13 @@ Servo servo;
 //Servo angles
 #define SERVO_90_DEG 90
 #define SERVO_0_DEG 0
-#define SERVO_45_DEG 45
-#define SERVO_135_DEG 135
-#define INCREMENT 3
+#define SERVO_180_DEG 180
+
+//Increment to change angle by
+#define INCREMENT 10
 
 //RW speeds
-#define FULL_SPEED 177
+#define FULL_SPEED 200
 #define STATIONARY 127 //Shouldnt need to be used
 
 //Global to track current CMG position
@@ -108,8 +109,8 @@ void volume_minus_button(){
 
 void rewind_button(){
   Serial.println("Turning CMG CCW");
-  //If angle is greater than 45 degrees
-  if(cmg_angle > SERVO_45_DEG){
+  //If angle is greater than 0 degrees
+  if(cmg_angle > SERVO_0_DEG){
     //Decrement angle variable
     cmg_angle-=INCREMENT;
     //Write this decremented angle to CMG
@@ -120,8 +121,8 @@ void rewind_button(){
 
 void fast_forward_button(){
   Serial.println("Turning CMG CW");
-  //If angle is less than 135 degrees
-  if(cmg_angle < SERVO_135_DEG){
+  //If angle is less than 180 degrees
+  if(cmg_angle < SERVO_180_DEG){
     //Increment angle variable
     cmg_angle+=INCREMENT;
     //Write this incremented angle to CMG
