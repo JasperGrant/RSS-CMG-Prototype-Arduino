@@ -2,13 +2,12 @@
 A repo to contain Arduino code running on the RSS CMG prototype.
 
 ## Project Background
-![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/7358d0aa-2e65-402e-a229-1212ce01d80f)
+![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/a3f1ec58-2592-4fbc-b88c-6cbbf2545367)
 
 ## Prototype
-![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/0ba9554a-22c9-4f5d-97a1-6b7b18c3e11f)
+![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/8548070d-8a23-44c6-9d33-6b8eb93a2bb7)
 
-
-
+## Operation
 | IR Remote Button | Function |
 | ------------- |:-------------:|
 | Play          ►	  |Start or stop logging inertial data on SD card.|
