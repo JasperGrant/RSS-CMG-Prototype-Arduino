@@ -1,7 +1,7 @@
 # RSS-CMG-Prototype-Arduino
 A repo to contain Arduino code running on the RSS CMG prototype.
 
-## Background
+## Project Background
 ![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/7358d0aa-2e65-402e-a229-1212ce01d80f)
 
 ## Prototype
