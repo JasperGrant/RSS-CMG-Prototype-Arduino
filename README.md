@@ -8,6 +8,7 @@ A repo to contain Arduino code running on the RSS CMG prototype.
 ![image](https://github.com/JasperGrant/RSS-CMG-Prototype-Arduino/assets/72110751/8548070d-8a23-44c6-9d33-6b8eb93a2bb7)
 
 ## Operation
+Main.ino is the main Arduino code for demonstration. Turn on the power switch and the follow the following instructions for demonstration.
 | IR Remote Button | Function |
 | ------------- |:-------------:|
 | Play          ►	  |Start or stop logging inertial data on SD card.|
